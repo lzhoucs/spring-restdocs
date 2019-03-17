@@ -37,6 +37,7 @@ dependencies {
 	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 
 	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile("org.springframework.boot:spring-boot-starter-actuator")
 
 	testCompile('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'junit', module: 'junit;'

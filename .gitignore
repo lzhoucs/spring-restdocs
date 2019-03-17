@@ -8,3 +8,5 @@ build
 target
 .idea
 *.iml
+out/
+.DS_Store

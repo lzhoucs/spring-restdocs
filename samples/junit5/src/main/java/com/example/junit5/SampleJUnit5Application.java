@@ -31,7 +31,7 @@ public class SampleJUnit5Application {
 	@RestController
 	private static class SampleController {
 
-		@RequestMapping("/")
+		@RequestMapping("/hello")
 		public String index() {
 			return "Hello, World";
 		}

@@ -32,10 +32,52 @@ public class SampleJUnit5Application {
 	private static class SampleController {
 
 		@RequestMapping("/hello")
-		public String index() {
-			return "Hello, World";
+		public HelloModel index() {
+			return new HelloModel("hello", "hello world!", 1.0);
+		}
+	}
+
+	public static class HelloModel {
+		private String name;
+		private String message;
+		private double version;
+
+		public HelloModel(String name, String message, double version)
+		{
+			this.name = name;
+			this.message = message;
+			this.version = version;
 		}
 
+		public String getName()
+		{
+			return name;
+		}
+
+		public void setName(String name)
+		{
+			this.name = name;
+		}
+
+		public String getMessage()
+		{
+			return message;
+		}
+
+		public void setMessage(String message)
+		{
+			this.message = message;
+		}
+
+		public double getVersion()
+		{
+			return version;
+		}
+
+		public void setVersion(double version)
+		{
+			this.version = version;
+		}
 	}
 
 }

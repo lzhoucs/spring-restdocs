@@ -16,6 +16,7 @@
 
 package com.example.junit5;
 
+import com.epages.restdocs.apispec.ResourceSnippetParameters;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -24,10 +25,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -42,10 +43,14 @@ public class SampleJUnit5ApplicationTests {
 	public void sample() throws Exception {
 		this.mockMvc.perform(get("/hello"))
 				.andExpect(status().isOk())
-				.andDo(document("sample", responseFields(
-					fieldWithPath("name").type(JsonFieldType.STRING).description("name of the hello"),
-					fieldWithPath("message").type(JsonFieldType.STRING).description("human readable message"),
-					fieldWithPath("version").type(JsonFieldType.NUMBER).description("version of the hello")
+				.andDo(document("sample", resource(
+					ResourceSnippetParameters.builder()
+						.description("Get hello")
+						.responseFields(
+							fieldWithPath("name").type(JsonFieldType.STRING).description("name of the hello"),
+							fieldWithPath("message").type(JsonFieldType.STRING).description("human readable message"),
+							fieldWithPath("version").type(JsonFieldType.NUMBER).description("version of the hello"))
+						.build()
 				)));
 	}
 

@@ -21,63 +21,90 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static com.example.junit5.SampleJUnit5Application.Weather.SPRING;
+import static com.example.junit5.SampleJUnit5Application.Weather.WINTER;
+
 @SpringBootApplication
-public class SampleJUnit5Application {
+public class SampleJUnit5Application
+{
 
-	public static void main(String[] args) {
-		new SpringApplication(SampleJUnit5Application.class).run(args);
-	}
+    public static void main(String[] args)
+    {
+        new SpringApplication(SampleJUnit5Application.class).run(args);
+    }
 
-	@RestController
-	private static class SampleController {
+    @RestController
+    private static class SampleController
+    {
 
-		@RequestMapping("/hello")
-		public HelloModel index() {
-			return new HelloModel("hello", "hello world!", 1.0);
-		}
-	}
+        @RequestMapping("/hello")
+        public HelloModel index()
+        {
+            return new HelloModel("hello", "hello world!", 1.0, Arrays.asList(SPRING, WINTER));
+        }
+    }
 
-	public static class HelloModel {
-		private String name;
-		private String message;
-		private double version;
+    public static class HelloModel
+    {
+        private String name;
+        private String message;
+        private double version;
+        private List<Weather> weathers;
 
-		public HelloModel(String name, String message, double version)
-		{
-			this.name = name;
-			this.message = message;
-			this.version = version;
-		}
+        public HelloModel(String name, String message, double version, List<Weather> weathers)
+        {
+            this.name = name;
+            this.message = message;
+            this.version = version;
+            this.weathers = weathers;
+        }
 
-		public String getName()
-		{
-			return name;
-		}
+        public String getName()
+        {
+            return name;
+        }
 
-		public void setName(String name)
-		{
-			this.name = name;
-		}
+        public void setName(String name)
+        {
+            this.name = name;
+        }
 
-		public String getMessage()
-		{
-			return message;
-		}
+        public String getMessage()
+        {
+            return message;
+        }
 
-		public void setMessage(String message)
-		{
-			this.message = message;
-		}
+        public void setMessage(String message)
+        {
+            this.message = message;
+        }
 
-		public double getVersion()
-		{
-			return version;
-		}
+        public double getVersion()
+        {
+            return version;
+        }
 
-		public void setVersion(double version)
-		{
-			this.version = version;
-		}
-	}
+        public void setVersion(double version)
+        {
+            this.version = version;
+        }
 
+        public List<Weather> getWeathers()
+        {
+            return weathers;
+        }
+
+        public void setWeathers(List<Weather> weathers)
+        {
+            this.weathers = weathers;
+        }
+    }
+
+    enum Weather
+    {
+        SPRING, SUMMER, FALL, WINTER
+    }
 }

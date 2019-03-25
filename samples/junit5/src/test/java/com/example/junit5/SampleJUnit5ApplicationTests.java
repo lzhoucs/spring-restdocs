@@ -49,7 +49,8 @@ public class SampleJUnit5ApplicationTests {
 						.responseFields(
 							fieldWithPath("name").type(JsonFieldType.STRING).description("name of the hello"),
 							fieldWithPath("message").type(JsonFieldType.STRING).description("human readable message"),
-							fieldWithPath("version").type(JsonFieldType.NUMBER).description("version of the hello"))
+							fieldWithPath("version").type(JsonFieldType.NUMBER).description("version of the hello"),
+							fieldWithPath("weathers").type(JsonFieldType.ARRAY).description("an array of weathers"))
 						.build()
 				)));
 	}
